@@ -1,13 +1,3 @@
-let player={
-    name:"Shivam",
-    chips:0,
-    sayHello:function () {
-        console.log("Hello")
-    }
-}
-
-player.sayHello()
-
 let cards = []
 let sum = 0
 
@@ -17,10 +7,7 @@ let isAlive = false
 let messageEl=document.querySelector("#message-el")
 let sumEl=document.querySelector("#sum-el")
 let cardsEl=document.querySelector("#cards-el")
-
-let playerEl=document.querySelector("#player-el")
-
-playerEl.textContent = player.name + ": $" + player.chips
+let remainMsgEl=document.querySelector("#remain-msg-el")
 
 function startGame(){
     let firstCard=getRandomCard()
@@ -52,7 +39,10 @@ function renderGame() {
     }
     sumEl.textContent = "Sum:" +  " " + sum
     let mes=""
+    let remainEl=""
     if(sum <= 20){
+        let remainAmount=21-sum
+        remainEl="You require "+remainAmount +" to get BlackJack"
         mes="Do you want to draw a new card?"
     }
     else if(sum === 21){
@@ -63,6 +53,7 @@ function renderGame() {
         mes="You're out of the game!"
         isAlive = false
     }
+    remainMsgEl.textContent=remainEl
     messageEl.textContent=mes
 }
 
